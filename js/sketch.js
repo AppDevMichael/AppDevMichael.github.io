@@ -72,7 +72,7 @@ function mouseReleased() {
 
       if (bought) {
         console.log("released button " + i);
-        gameData.trees = gameData.trees - tmpPrice;
+        gameData.trees = gameData.trees - Math.round(tmpPrice);
         var tps = 0;
         for (var i = 0; i < gameData.generators.length; i++) {
           tps += gameData.generators[i].productionPerSecond;
