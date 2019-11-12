@@ -23,7 +23,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(1000, 600);
   imageMode(CENTER);
   image(img, width / 4, height / 2);
   for (var i = 0; i < gameData.visableGen; i++) {
