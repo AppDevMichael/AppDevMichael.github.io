@@ -30,10 +30,10 @@ function Button(tempX, tempY, tempW, tempH, tempObj) {
             rect(this.x, this.y, this.w, this.h);
             textAlign(LEFT, BOTTOM);
             fill(0);
-            textSize( width /40);
+            textSize( 15);
             text(this.title, (this.x - (this.w / 2)) + 5, this.y);
             fill(0);
-            textSize( width /60);
+            textSize( 10);
             textAlign(LEFT, TOP);
             text(this.sub, (this.x - (this.w / 2)) + 5, this.y);
         } else {
@@ -41,10 +41,10 @@ function Button(tempX, tempY, tempW, tempH, tempObj) {
             rect(this.x, this.y, this.w, this.h);
             textAlign(LEFT, BOTTOM);
             fill(255);
-            textSize( width /40);
+            textSize( 15);
             text(this.title, (this.x - (this.w / 2)) + 5, this.y);
             fill(255);
-            textSize( width /60);
+            textSize( 10);
             textAlign(LEFT, TOP);
             text(this.sub, (this.x - (this.w / 2)) + 5, this.y);
         }
