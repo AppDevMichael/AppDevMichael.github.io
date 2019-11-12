@@ -3,7 +3,7 @@ var gameData = {
   trees: 0,
   treesPerClick: 1,
   treesPerSec: 0,
-  visableGen: 5, 
+  visableGen: 5,
   generators: []
 }
 var firstGen = {
@@ -30,18 +30,23 @@ function setup() {
     tmp = firstGen
     tmp.name += i;
     gameData.generators[i] = createGenerator(i);
-    buttons[i] = new Button((width / 2) + 120, 70 + (50 * i), 200, 40, gameData.generators[i]);
+    buttons[i] = new Button((width / 2) + 120, 90 + (50 * i), 200, 40, gameData.generators[i]);
   }
 }
 
+setInterval(function () {
+  gameData.trees += gameData.treesPerSec;
+},1000);
 
 function draw() {
   background(220);
   fill(0);
   noStroke();
   image(img, width / 4, height / 2);
-  textSize(width/ 30);
-  text("Your trees: " + gameData.trees, (width / 2) + 20, 20);
+  textSize(25);
+  text("Your trees: " + Math.round(gameData.trees), (width / 2) + 20, 20);
+  textSize(12);
+  text("Your trees per second: " + Math.round(gameData.treesPerSec), (width / 2) + 20, 50);
   stroke(0);
   line((width / 2), 0, (width / 2), height);
   for (var i = 0; i < gameData.visableGen; i++) {
