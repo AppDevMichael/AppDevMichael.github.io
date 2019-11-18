@@ -40,10 +40,10 @@ class Generator {
 
 
 
-function createGenerator(index) {
+function createGenerator(name,index) {
 
     const g = {
-        name: index,
+        name: name,
         cost: Math.pow(10, index),
         mult: 1,
         amount: 0,

@@ -22,32 +22,27 @@ function Button(tempX, tempY, tempW, tempH, tempObj) {
     this.display = function (genData) {
         this.sub = "Own " + genData.bought;
         rectMode(CENTER);
-        
+
         noStroke();
         // The colours changes based on the state of the button
         if (this.on) {
             fill(175);
             rect(this.x, this.y, this.w, this.h);
-            textAlign(LEFT, BOTTOM);
             fill(0);
-            textSize( 15);
-            text(this.title, (this.x - (this.w / 2)) + 5, this.y);
-            fill(0);
-            textSize( 10);
-            textAlign(LEFT, TOP);
-            text(this.sub, (this.x - (this.w / 2)) + 5, this.y);
         } else {
             fill(0);
             rect(this.x, this.y, this.w, this.h);
-            textAlign(LEFT, BOTTOM);
             fill(255);
-            textSize( 15);
-            text(this.title, (this.x - (this.w / 2)) + 5, this.y);
-            fill(255);
-            textSize( 10);
-            textAlign(LEFT, TOP);
-            text(this.sub, (this.x - (this.w / 2)) + 5, this.y);
         }
-        
+        textAlign(LEFT, BOTTOM);
+        textSize(15);
+        text(this.title, (this.x - (this.w / 2)) + 5, this.y);
+        textSize(10);
+        textAlign(LEFT, TOP);
+        text(this.sub, (this.x - (this.w / 2)) + 5, this.y);
+        textSize(10);
+        textAlign(RIGHT, TOP);
+        text(this.sub, (this.x + (this.w / 2)) - 5, this.y);
+        textAlign(LEFT, CENTER);
     }
 }
