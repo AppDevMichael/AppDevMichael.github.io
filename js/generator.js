@@ -7,6 +7,7 @@ class Generator {
         this.amount = props.amount
         this.bought = props.bought
         this.tier = props.tier
+        
     }
 
     get canBuy() {

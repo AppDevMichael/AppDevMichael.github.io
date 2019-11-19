@@ -26,10 +26,13 @@ function preload() {
 
   //upgrades.up;
   img = loadImage('https://image.shutterstock.com/image-vector/green-tree-cartoon-260nw-317936303.jpg');
+  rBackground = loadImage('images/rightBG.png');
 }
 
 function setup() {
   var cnv = createCanvas(1024, 640);
+  //cnv = createCanvas(windowWidth, windowHeight);
+  noSmooth();
   gameData.upgrades = upgrades;
   var x = (windowWidth - width) / 2;
   var y = (windowHeight - height) / 2;
@@ -40,7 +43,7 @@ function setup() {
 
   for (var i = 0; i <= gameData.visableGen; i++) {
     gameData.generators[i] = createGenerator(firstGen.name + i, i);
-    gameData.genButtons[i] = new Button((width / 2) + 130, 90 + (54 * i), 240, 48, gameData.generators[i]);
+    gameData.genButtons[i] = new Button((width / 2) + 130, 120 + (54 * i), 240, 48, gameData.generators[i]);
   }
 }
 
@@ -48,16 +51,21 @@ setInterval(function () {
   gameData.trees += gameData.treesPerSec;
 }, 1000);
 
-function draw() {
 
+function draw() {
+  pixelDensity(2);
   background(100);
-  fill(0);
+  rBackground.resize(512, 640);
+  image(rBackground, 3 * width / 4, height / 2);
+  fill(255);
   noStroke();
+  
   image(img, width / 4, height / 2);
   textSize(25);
-  text("Your trees: " + Math.round(gameData.trees), (width / 2) + 20, 20);
+  
+  text("Your trees: " + Math.round(gameData.trees), (width / 2) + 20, 40);
   textSize(12);
-  text("Your trees per second: " + Math.round(gameData.treesPerSec), (width / 2) + 20, 50);
+  text("Your trees per second: " + Math.round(gameData.treesPerSec), (width / 2) + 20, 70);
   stroke(0);
   line((width / 2), 0, (width / 2), height);
   for (var i = 0; i <= gameData.visableGen; i++) {
@@ -68,19 +76,22 @@ function draw() {
   for (i in gameData.upgrades) {
     //console.log(i);
     if (gameData.upgrades[i].visable <= gameData.trees && gameData.upgrades[i].bought == 0) {
-      if (x >= 5) {
+      if (x >= 4) {
         j++;
         x = 0;
       }
       if (gameData.upButtons[i] == undefined) {
-        gameData.upButtons[i] = new Button(795 + (x * 50), 90 + (54 * j), 48, 48, gameData.upgrades[i]);
+        gameData.upButtons[i] = new Button((width / 2) + 283 + (x * 50), 120 + (54 * j), 48, 48, gameData.upgrades[i]);
       }
 
-      gameData.upButtons[i].displayUpgrade(795 + (x * 50), 90 + (54 * j), gameData.upgrades[i]);
+      gameData.upButtons[i].displayUpgrade((width / 2) + 283 + (x * 50), 120 + (54 * j), gameData.upgrades[i]);
       gameData.upButtons[i].hover(mouseX, mouseY);
       x++;
     }
 
+  }
+  for (i in gameData.upButtons) {
+    gameData.upButtons[i].hover(mouseX, mouseY);
   }
 }
 
@@ -92,6 +103,10 @@ function mousePressed() {
     var clicked = gameData.genButtons[i].click(mouseX, mouseY);
     if (clicked) {
     }
+  }
+  if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 100) {
+    let fs = fullscreen();
+    fullscreen(!fs);
   }
 }
 
@@ -117,7 +132,7 @@ function mouseReleased() {
         gens++;
         if (gens > gameData.visableGen) {
           gameData.generators[gens] = createGenerator(firstGen.name + gens, gens);
-          gameData.genButtons[gens] = new Button((width / 2) + 130, 90 + (54 * gens), 240, 48, gameData.generators[gens]);
+          gameData.genButtons[gens] = new Button((width / 2) + 130, 120 + (54 * gens), 240, 48, gameData.generators[gens]);
 
           gameData.genButtons[gens].displayGen(gameData.generators[gens]);
           gameData.visableGen = gens;
@@ -128,3 +143,6 @@ function mouseReleased() {
     }
   }
 }
+// function windowResized() {
+//   resizeCanvas(windowWidth, windowHeight);
+// }

@@ -12,10 +12,14 @@ class Button {
         // Is the button on or off?
         // Button always starts as off
         this.on = false;
+        this.icon = loadImage("images/generators.png");
+        this.icon.resizeNN(240,48);
         if (tempObj.image != undefined) {
             this.icon = loadImage(tempObj.image);
-            this.icon.resize(24,24);
+            this.icon.resizeNN(24,24);
         }
+        this.hoverImage = loadImage("images/thinBorderDescBox.png");
+        
     }
 
 
@@ -44,15 +48,17 @@ class Button {
             rect(this.x, this.y, this.w, this.h);
             fill(255);
         }
+        this.icon.resizeNN(240,48);
+        image(this.icon, this.x, this.y);
         textAlign(LEFT, BOTTOM);
         textSize(15);
-        text(this.title, (this.x - (this.w / 2)) + 5, this.y);
+        text(this.title, (this.x - (this.w / 2)) + 10, this.y);
         textSize(10);
         textAlign(LEFT, TOP);
-        text(this.sub, (this.x - (this.w / 2)) + 5, this.y);
+        text(this.sub, (this.x - (this.w / 2)) + 10, this.y);
         textSize(10);
         textAlign(RIGHT, TOP);
-        text(this.cost, (this.x + (this.w / 2)) - 5, this.y);
+        text(this.cost, (this.x + (this.w / 2)) - 10, this.y);
         textAlign(LEFT, CENTER);
     }
 
@@ -66,7 +72,7 @@ class Button {
         // The colours changes based on the state of the button
         //console.log("image local" + data.image);
         
-        
+        this.icon.resizeNN(48,48);
         if (this.on) {
             fill(175);
             rect(this.x, this.y, this.w, this.h);
@@ -76,7 +82,7 @@ class Button {
             rect(this.x, this.y, this.w, this.h);
             fill(255);
         }
-        this.icon.resize(48,48);
+        this.icon.resize(this.w,this.w);
         image(this.icon, this.x, this.y);
 
     }
@@ -84,7 +90,10 @@ class Button {
     hover(mx, my) {
         // Check to see if a point is inside the rectangle
         if (mx > (this.x - (this.w / 2)) && mx < (this.x + (this.w / 2)) && my > (this.y - (this.h / 2)) && my < (this.y + (this.h / 2))) {
-            rect(this.x-100, this.y, 200, 100);
+            this.hoverImage.resizeNN(300,144);
+            //rect(this.x-100, this.y, 200, 100);
+            image(this.hoverImage, this.x-150, this.y);
+            
         }
     };
 }
