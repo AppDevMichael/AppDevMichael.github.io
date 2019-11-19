@@ -4,7 +4,10 @@ var gameData = {
   treesPerClick: 1,
   treesPerSec: 0,
   visableGen: 1,
-  generators: []
+  generators: [],
+  genButtons: [],
+  upgrades: [],
+  upButtons: [],
 }
 var firstGen = {
   tier: 0,
@@ -19,21 +22,25 @@ let img;
 let buttons = new Array();
 
 
-
 function preload() {
+
+  //upgrades.up;
   img = loadImage('https://image.shutterstock.com/image-vector/green-tree-cartoon-260nw-317936303.jpg');
 }
 
 function setup() {
   var cnv = createCanvas(1024, 640);
+  gameData.upgrades = upgrades;
   var x = (windowWidth - width) / 2;
   var y = (windowHeight - height) / 2;
   cnv.position(x, y);
   imageMode(CENTER);
   image(img, width / 4, height / 2);
+  console.log(upgrades);
+
   for (var i = 0; i <= gameData.visableGen; i++) {
     gameData.generators[i] = createGenerator(firstGen.name + i, i);
-    buttons[i] = new Button((width / 2) + 140, 90 + (54 * i), 240, 48, gameData.generators[i]);
+    gameData.genButtons[i] = new Button((width / 2) + 130, 90 + (54 * i), 240, 48, gameData.generators[i]);
   }
 }
 
@@ -42,7 +49,8 @@ setInterval(function () {
 }, 1000);
 
 function draw() {
-  background(220);
+
+  background(100);
   fill(0);
   noStroke();
   image(img, width / 4, height / 2);
@@ -53,7 +61,26 @@ function draw() {
   stroke(0);
   line((width / 2), 0, (width / 2), height);
   for (var i = 0; i <= gameData.visableGen; i++) {
-    buttons[i].display(gameData.generators[i]);
+    gameData.genButtons[i].displayGen(gameData.generators[i]);
+  }
+  let j = 0;
+  let x = 0;
+  for (i in gameData.upgrades) {
+    //console.log(i);
+    if (gameData.upgrades[i].visable <= gameData.trees && gameData.upgrades[i].bought == 0) {
+      if (x >= 5) {
+        j++;
+        x = 0;
+      }
+      if (gameData.upButtons[i] == undefined) {
+        gameData.upButtons[i] = new Button(795 + (x * 50), 90 + (54 * j), 48, 48, gameData.upgrades[i]);
+      }
+
+      gameData.upButtons[i].displayUpgrade(795 + (x * 50), 90 + (54 * j), gameData.upgrades[i]);
+      gameData.upButtons[i].hover(mouseX, mouseY);
+      x++;
+    }
+
   }
 }
 
@@ -62,24 +89,21 @@ function mousePressed() {
     gameData.trees += gameData.treesPerClick;
   }
   for (var i = 0; i < gameData.visableGen; i++) {
-    var clicked = buttons[i].click(mouseX, mouseY);
+    var clicked = gameData.genButtons[i].click(mouseX, mouseY);
     if (clicked) {
-      console.log("clicked " + i);
     }
   }
 }
 
 function mouseReleased() {
-  for (var i = 0; i < buttons.length; i++) {
-    var clicked = buttons[i].click(mouseX, mouseY);
-    buttons[i].on = false;
+  for (var i = 0; i < gameData.genButtons.length; i++) {
+    var clicked = gameData.genButtons[i].click(mouseX, mouseY);
+    gameData.genButtons[i].on = false;
     if (clicked) {
-      console.log("released button " + i);
       tmpPrice = gameData.generators[i].cost;
       bought = gameData.generators[i].buy();
 
       if (bought) {
-        console.log("released button " + i);
         gameData.trees = gameData.trees - Math.round(tmpPrice);
         var tps = 0;
         let gens = 0;
@@ -91,16 +115,15 @@ function mouseReleased() {
         }
         gameData.treesPerSec = tps;
         gens++;
-        console.log(gens);
-        if(gens > gameData.visableGen){
-          console.log(gens);
+        if (gens > gameData.visableGen) {
           gameData.generators[gens] = createGenerator(firstGen.name + gens, gens);
-          buttons[gens] = new Button((width / 2) + 120, 90 + (50 * gens), 200, 40, gameData.generators[gens]);
-          buttons[gens].display(gameData.generators[gens]);
+          gameData.genButtons[gens] = new Button((width / 2) + 130, 90 + (54 * gens), 240, 48, gameData.generators[gens]);
+
+          gameData.genButtons[gens].displayGen(gameData.generators[gens]);
           gameData.visableGen = gens;
 
         }
-        
+
       }
     }
   }
