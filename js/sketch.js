@@ -81,10 +81,10 @@ function draw() {
         x = 0;
       }
       if (gameData.upButtons[i] == undefined) {
-        gameData.upButtons[i] = new Button((width / 2) + 283 + (x * 50), 120 + (54 * j), 48, 48, gameData.upgrades[i]);
+        gameData.upButtons[i] = new Button((width / 2) + 283 + (x * 54), 120 + (54 * j), 48, 48, gameData.upgrades[i]);
       }
 
-      gameData.upButtons[i].displayUpgrade((width / 2) + 283 + (x * 50), 120 + (54 * j), gameData.upgrades[i]);
+      gameData.upButtons[i].displayUpgrade((width / 2) + 283 + (x * 54), 120 + (54 * j), gameData.upgrades[i]);
       gameData.upButtons[i].hover(mouseX, mouseY);
       x++;
     }

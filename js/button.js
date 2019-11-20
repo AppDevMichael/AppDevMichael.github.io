@@ -13,13 +13,13 @@ class Button {
         // Button always starts as off
         this.on = false;
         this.icon = loadImage("images/generators.png");
-        this.icon.resizeNN(240,48);
+        this.icon.resizeNN(240, 48);
         if (tempObj.image != undefined) {
             this.icon = loadImage(tempObj.image);
-            this.icon.resizeNN(24,24);
+            this.icon.resizeNN(24, 24);
         }
         this.hoverImage = loadImage("images/thinBorderDescBox.png");
-        
+
     }
 
 
@@ -48,7 +48,7 @@ class Button {
             rect(this.x, this.y, this.w, this.h);
             fill(255);
         }
-        this.icon.resizeNN(240,48);
+        this.icon.resizeNN(240, 48);
         image(this.icon, this.x, this.y);
         textAlign(LEFT, BOTTOM);
         textSize(15);
@@ -62,7 +62,7 @@ class Button {
         textAlign(LEFT, CENTER);
     }
 
-    displayUpgrade(tempX, tempY,data) {
+    displayUpgrade(tempX, tempY, data) {
 
         rectMode(CENTER);
         this.x = tempX;
@@ -70,9 +70,8 @@ class Button {
 
         noStroke();
         // The colours changes based on the state of the button
-        //console.log("image local" + data.image);
-        
-        this.icon.resizeNN(48,48);
+
+        this.icon.resizeNN(48, 48);
         if (this.on) {
             fill(175);
             rect(this.x, this.y, this.w, this.h);
@@ -82,18 +81,27 @@ class Button {
             rect(this.x, this.y, this.w, this.h);
             fill(255);
         }
-        this.icon.resize(this.w,this.w);
+        this.icon.resize(this.w, this.w);
         image(this.icon, this.x, this.y);
 
     }
-    
+
     hover(mx, my) {
         // Check to see if a point is inside the rectangle
         if (mx > (this.x - (this.w / 2)) && mx < (this.x + (this.w / 2)) && my > (this.y - (this.h / 2)) && my < (this.y + (this.h / 2))) {
-            this.hoverImage.resizeNN(300,144);
+            this.hoverImage.resizeNN(300, 144);
+            image(this.hoverImage, this.x - 150, this.y);
+            textAlign(LEFT, BOTTOM);
+            textSize(15);
+            fill(255);
+            text(this.title, (this.x - 300) + 10, this.y - 40);
+            textAlign(LEFT, TOP);
+            textSize(12);
+            fill(255);
+            text(this.cost, (this.x - 300) + 10, this.y + 40);
             //rect(this.x-100, this.y, 200, 100);
-            image(this.hoverImage, this.x-150, this.y);
-            
+
+
         }
     };
 }

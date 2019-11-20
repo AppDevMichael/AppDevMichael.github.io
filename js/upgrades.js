@@ -6,7 +6,8 @@ var upgrades = [
         "background": 0,
         "visable": 12,
         "cost": 100,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Palm Tree",
@@ -15,7 +16,8 @@ var upgrades = [
         "background": 0,
         "visable": 50,
         "cost": 500,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Sakura Tree",
@@ -24,7 +26,8 @@ var upgrades = [
         "background": 0,
         "visable": 100,
         "cost": 1000,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Lollipop Tree",
@@ -33,7 +36,8 @@ var upgrades = [
         "background": 0,
         "visable": 250,
         "cost": 5000,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Alien Tree",
@@ -42,7 +46,8 @@ var upgrades = [
         "background": 0,
         "visable": 500,
         "cost": 10000,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Snowy Background",
@@ -51,7 +56,8 @@ var upgrades = [
         "background": 0,
         "visable": 12,
         "cost": 100,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Beach Background",
@@ -60,7 +66,8 @@ var upgrades = [
         "background": 0,
         "visable": 50,
         "cost": 500,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Japanese Background",
@@ -69,7 +76,8 @@ var upgrades = [
         "background": 0,
         "visable": 100,
         "cost": 1000,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Candyland Background",
@@ -78,7 +86,8 @@ var upgrades = [
         "background": 0,
         "visable": 250,
         "cost": 5000,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     },
     {
         "name": "Space Background",
@@ -87,6 +96,7 @@ var upgrades = [
         "background": 0,
         "visable": 500,
         "cost": 10000,
-        "bought": 0
+        "bought": 0,
+        "description": "blah blah blah"
     }
 ];
