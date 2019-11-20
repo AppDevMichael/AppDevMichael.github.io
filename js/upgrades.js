@@ -4,7 +4,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/christmasTree.png",
         "background": 0,
-        "visable": 12,
+        "visable": 50,
         "cost": 100,
         "bought": 0,
         "description": "Buy this new tree to add a twist of festive cheer to your plantings."
@@ -14,7 +14,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/palmTree.png",
         "background": 0,
-        "visable": 50,
+        "visable": 250,
         "cost": 500,
         "bought": 0,
         "description": "Plant trees that give you some shade when relaxing."
@@ -24,7 +24,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/sakuraTree.png",
         "background": 0,
-        "visable": 100,
+        "visable": 1000,
         "cost": 1000,
         "bought": 0,
         "description": "Plant some trees and come back for cherry blosoms."
@@ -34,7 +34,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/lollipopTree.png",
         "background": 0,
-        "visable": 250,
+        "visable": 5000,
         "cost": 5000,
         "bought": 0,
         "description": "Get a great taste when planting these trees."
@@ -44,7 +44,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/alienTree.png",
         "background": 0,
-        "visable": 500,
+        "visable": 10000,
         "cost": 10000,
         "bought": 0,
         "description": "<REDACTED>"
@@ -54,7 +54,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/snowyBG.png",
         "background": 0,
-        "visable": 12,
+        "visable": 50,
         "cost": 100,
         "bought": 0,
         "description": "Plant some trees in this snowy landscape."
@@ -64,7 +64,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/beachBG.png",
         "background": 0,
-        "visable": 50,
+        "visable": 250,
         "cost": 500,
         "bought": 0,
         "description": "Plant some trees before taking a dip in this tropical area."
@@ -74,7 +74,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/japaneseBG.png",
         "background": 0,
-        "visable": 100,
+        "visable": 1000,
         "cost": 1000,
         "bought": 0,
         "description": "Plant some trees in this serene Japanese location."
@@ -84,7 +84,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/candylandBG.png",
         "background": 0,
-        "visable": 250,
+        "visable": 5000,
         "cost": 5000,
         "bought": 0,
         "description": "Leave some trees behind when you take some sweets with you from this Candyland."
@@ -94,7 +94,7 @@ var upgrades = [
         "gen": 0,
         "image": "images/upgrades/spaceBG.png",
         "background": 0,
-        "visable": 500,
+        "visable": 10000,
         "cost": 10000,
         "bought": 0,
         "description": "<CLASSIFIED>"
