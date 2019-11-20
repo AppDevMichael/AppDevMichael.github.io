@@ -19,12 +19,16 @@ var firstGen = {
 }
 
 let img;
+let tipBorder;
 let buttons = new Array();
-
+let tips;
+var showTip = false;
+var tipNum = 0;
 
 function preload() {
 
-  //upgrades.up;
+  tips = loadStrings('assets/tips.txt');
+  tipBorder = loadImage('images/popupbox.png')
   img = loadImage('https://image.shutterstock.com/image-vector/green-tree-cartoon-260nw-317936303.jpg');
   rBackground = loadImage('images/rightBG.png');
 }
@@ -45,13 +49,18 @@ function setup() {
     gameData.generators[i] = createGenerator(firstGen.name + i, i);
     gameData.genButtons[i] = new Button((width / 2) + 130, 120 + (54 * i), 240, 48, gameData.generators[i]);
   }
+
 }
 
 setInterval(function () {
   gameData.trees += gameData.treesPerSec;
 }, 1000);
 
-
+setInterval(function () {
+  showTip = !showTip;
+  tipNum = random(tips);
+  
+}, 30000);
 
 
 function draw() {
@@ -61,10 +70,10 @@ function draw() {
   image(rBackground, 3 * width / 4, height / 2);
   fill(255);
   noStroke();
-  
+
   image(img, width / 4, height / 2);
   textSize(25);
-  
+
   text("Your trees: " + Math.round(gameData.trees), (width / 2) + 20, 40);
   textSize(12);
   text("Your trees per second: " + Math.round(gameData.treesPerSec), (width / 2) + 20, 70);
@@ -83,7 +92,9 @@ function draw() {
         x = 0;
       }
       if (gameData.upButtons[i] == undefined) {
+        gameData.upgrades[i].visable = 0;
         gameData.upButtons[i] = new Button((width / 2) + 283 + (x * 54), 120 + (54 * j), 48, 48, gameData.upgrades[i]);
+
       }
 
       gameData.upButtons[i].displayUpgrade((width / 2) + 283 + (x * 54), 120 + (54 * j), gameData.upgrades[i]);
@@ -94,6 +105,11 @@ function draw() {
   }
   for (i in gameData.upButtons) {
     gameData.upButtons[i].hover(mouseX, mouseY);
+  }
+  if (showTip == true) {
+    
+    drawTip(tipNum);
+
   }
 }
 
@@ -145,6 +161,11 @@ function mouseReleased() {
     }
   }
 }
-// function windowResized() {
-//   resizeCanvas(windowWidth, windowHeight);
-// }
+function drawTip(msg) {
+  tipBorder.resizeNN(240, 240);
+  image(tipBorder, width - 120, height - 120);
+  fill(255);
+  textSize(15);
+  text(msg, width - 120, height - 120, 220, 220);
+  console.log(msg);
+}

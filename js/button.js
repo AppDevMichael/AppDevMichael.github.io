@@ -82,7 +82,7 @@ class Button {
             rect(this.x, this.y, this.w, this.h);
             fill(255);
         }
-        this.icon.resize(this.w, this.w);
+        this.icon.resizeNN(this.w, this.w);
         image(this.icon, this.x, this.y);
 
     }
