@@ -7,7 +7,7 @@ var upgrades = [
         "visable": 12,
         "cost": 100,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Buy this new tree to add a twist of festive cheer to your plantings."
     },
     {
         "name": "Palm Tree",
@@ -17,7 +17,7 @@ var upgrades = [
         "visable": 50,
         "cost": 500,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Plant trees that give you some shade when relaxing."
     },
     {
         "name": "Sakura Tree",
@@ -27,7 +27,7 @@ var upgrades = [
         "visable": 100,
         "cost": 1000,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Plant some trees and come back for cherry blosoms."
     },
     {
         "name": "Lollipop Tree",
@@ -37,7 +37,7 @@ var upgrades = [
         "visable": 250,
         "cost": 5000,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Get a great taste when planting these trees."
     },
     {
         "name": "Alien Tree",
@@ -47,7 +47,7 @@ var upgrades = [
         "visable": 500,
         "cost": 10000,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "<REDACTED>"
     },
     {
         "name": "Snowy Background",
@@ -57,7 +57,7 @@ var upgrades = [
         "visable": 12,
         "cost": 100,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Plant some trees in this snowy landscape."
     },
     {
         "name": "Beach Background",
@@ -67,7 +67,7 @@ var upgrades = [
         "visable": 50,
         "cost": 500,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Plant some trees before taking a dip in this tropical area."
     },
     {
         "name": "Japanese Background",
@@ -77,7 +77,7 @@ var upgrades = [
         "visable": 100,
         "cost": 1000,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Plant some trees in this serene Japanese location."
     },
     {
         "name": "Candyland Background",
@@ -87,7 +87,7 @@ var upgrades = [
         "visable": 250,
         "cost": 5000,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "Leave some trees behind when you take some sweets with you from this Candyland."
     },
     {
         "name": "Space Background",
@@ -97,6 +97,6 @@ var upgrades = [
         "visable": 500,
         "cost": 10000,
         "bought": 0,
-        "description": "blah blah blah"
+        "description": "<CLASSIFIED>"
     }
 ];
