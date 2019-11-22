@@ -76,7 +76,7 @@ function draw() {
 
   text("Your trees: " + Math.round(gameData.trees), (width / 2) + 20, 40);
   textSize(12);
-  text("Your trees per second: " + Math.round(gameData.treesPerSec), (width / 2) + 20, 70);
+  text("Your trees per second: " + Math.round( gameData.treesPerSec * 10 ) / 10, (width / 2) + 20, 70);
   stroke(0);
   line((width / 2), 0, (width / 2), height);
   for (var i = 0; i <= gameData.visableGen; i++) {
@@ -169,5 +169,5 @@ function drawTip(msg) {
   fill(255);
   textSize(15);
   text(msg, width - 120, height - 120, 220, 220);
-  console.log(msg);
+  //console.log(msg);
 }

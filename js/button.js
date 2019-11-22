@@ -36,6 +36,7 @@ class Button {
     displayGen(genData) {
         this.sub = "Own " + genData.bought;
         this.cost = "Cost " + genData.cost;
+        this.production = "Producing " + genData.productionPerSecond;
         rectMode(CENTER);
 
         noStroke();
@@ -59,6 +60,9 @@ class Button {
         text(this.sub, (this.x - (this.w / 2)) + 10, this.y);
         textSize(10);
         textAlign(RIGHT, TOP);
+        text(this.production, (this.x + (this.w / 2)) - 10, this.y);
+        textSize(10);
+        textAlign(RIGHT, BOTTOM);
         text(this.cost, (this.x + (this.w / 2)) - 10, this.y);
         textAlign(LEFT, CENTER);
     }
