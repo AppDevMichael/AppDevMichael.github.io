@@ -101,7 +101,7 @@ class Button {
             fill(255);
             text(this.cost, (this.x - 300) + 10, this.y + 40);
             rectMode(CORNER);
-            text(this.desc,(this.x - 300) + 10, this.y - 25, 280, 100);
+            text(this.desc, (this.x - 300) + 10, this.y - 25, 280, 100);
             rectMode(CENTER);
             //rect(this.x-100, this.y, 200, 100);
 

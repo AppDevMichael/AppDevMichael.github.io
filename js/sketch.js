@@ -59,7 +59,7 @@ setInterval(function () {
 setInterval(function () {
   showTip = !showTip;
   tipNum = random(tips);
-  
+
 }, 30000);
 
 
@@ -107,7 +107,7 @@ function draw() {
     gameData.upButtons[i].hover(mouseX, mouseY);
   }
   if (showTip == true) {
-    
+
     drawTip(tipNum);
 
   }
@@ -135,7 +135,7 @@ function mouseReleased() {
     if (clicked) {
       tmpPrice = gameData.generators[i].cost;
       bought = gameData.generators[i].buy();
-
+      console.log("production of " + i + " is: " + gameData.generators[i].productionPerSecond); 
       if (bought) {
         gameData.trees = gameData.trees - Math.round(tmpPrice);
         var tps = 0;
@@ -159,6 +159,8 @@ function mouseReleased() {
 
       }
     }
+
+    
   }
 }
 function drawTip(msg) {

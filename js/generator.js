@@ -19,7 +19,11 @@ class Generator {
         if (!this.canBuy) return(false);
         //gameData.tress -= this.cost;
         console.log("gameData.tree " + gameData.trees);
-        this.cost *= 1 + (this.tier + 1) * 0.25;
+        if (this.cost<2)
+        {
+            this.cost=5
+        }
+        this.cost = Math.round(this.cost*pow(1.25,this.amount));
         this.amount += 1;
         this.bought += 1;
         if (this.bought % 100 == 0) {
@@ -45,7 +49,7 @@ function createGenerator(name,index) {
 
     const g = {
         name: name,
-        cost: Math.pow(10, index),
+        cost: Math.pow(5, index+1),
         mult: 1,
         amount: 0,
         bought: 0,
