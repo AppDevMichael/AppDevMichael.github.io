@@ -22,7 +22,7 @@ class Generator {
         if (this.cost < 2) {
             this.cost = 5
         }
-        this.cost = Math.round(this.cost * pow(1.25, this.amount));
+        this.cost = Math.round(this.cost * pow(1.05, this.amount));
         this.amount += 1;
         this.bought += 1;
         if (this.bought % 100 == 0) {
