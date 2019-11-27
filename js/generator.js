@@ -36,7 +36,7 @@ class Generator {
 
     get productionPerSecond() {
         let ret = this.amount * this.mult;
-        ret /= 5
+        ret /= 10
         return ret
     }
 

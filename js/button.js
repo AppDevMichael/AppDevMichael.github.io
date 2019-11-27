@@ -9,6 +9,7 @@ class Button {
         this.title = tempObj.name;
         this.sub = "Own " + tempObj.bought;
         this.cost = "Cost " + tempObj.cost;
+
         // Is the button on or off?
         // Button always starts as off
         this.on = false;
@@ -18,6 +19,9 @@ class Button {
             this.icon = loadImage(tempObj.image);
             this.icon.resizeNN(24, 24);
             this.desc = tempObj.description;
+            if (tempObj.background != "") {
+                this.bg = loadImage(tempObj.background);
+            }
         }
         this.hoverImage = loadImage("images/thinBorderDescBox.png");
 
