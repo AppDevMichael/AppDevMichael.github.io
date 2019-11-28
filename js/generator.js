@@ -7,6 +7,7 @@ class Generator {
         this.amount = props.amount
         this.bought = props.bought
         this.tier = props.tier
+        this.baseCost = props.cost
 
     }
 
@@ -17,12 +18,10 @@ class Generator {
     buy() {
 
         if (!this.canBuy) return (false);
-        //gameData.tress -= this.cost;
-        console.log("gameData.tree " + gameData.trees);
         if (this.cost < 2) {
             this.cost = 5
         }
-        this.cost = Math.round(this.cost * pow(1.05, this.amount));
+        this.cost = Math.round(this.baseCost * Math.pow(1.15, this.amount));
         this.amount += 1;
         this.bought += 1;
         if (this.bought % 100 == 0) {

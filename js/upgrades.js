@@ -98,5 +98,49 @@ var upgrades = [
         "cost": 10000,
         "bought": 0,
         "description": "<CLASSIFIED>"
+    },
+    {
+        "name": "Click Upgrade",
+        "gen": 0,
+        "image": "images/upgrades/cursor1.png",
+        "background": "",
+        "tpc": 1,
+        "visable": 50,
+        "cost": 100,
+        "bought": 0,
+        "description": "Increase the amount of trees created every click"
+    },
+    {
+        "name": "Click Upgrade",
+        "gen": 0,
+        "image": "images/upgrades/cursor2.png",
+        "background": "",
+        "tpc": 3,
+        "visable": 250,
+        "cost": 500,
+        "bought": 0,
+        "description": "Increase the amount of trees created every click"
+    },
+    {
+        "name": "Click Upgrade",
+        "gen": 0,
+        "image": "images/upgrades/cursor3.png",
+        "background": "",
+        "tpc": 5,
+        "visable": 1000,
+        "cost": 1500,
+        "bought": 0,
+        "description": "Increase the amount of trees created every click"
+    },
+    {
+        "name": "Click Upgrade",
+        "gen": 0,
+        "image": "images/upgrades/cursor4.png",
+        "background": "",
+        "tpc": 10,
+        "visable": 5000,
+        "cost": 5500,
+        "bought": 0,
+        "description": "Increase the amount of trees created every click"
     }
 ];

@@ -112,6 +112,7 @@ class Button {
             text(this.desc, (this.x - 300) + 10, this.y - 25, 280, 100);
             rectMode(CENTER);
             //rect(this.x-100, this.y, 200, 100);
+            textAlign(LEFT, CENTER);
 
 
         }
