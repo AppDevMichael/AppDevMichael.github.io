@@ -7,12 +7,16 @@ class Generator {
         this.amount = props.amount
         this.bought = props.bought
         this.tier = props.tier
-        this.baseCost = props.cost
+        if (props.baseCost != undefined) {
+            this.baseCost = props.baseCost
+        } else {
+            this.baseCost = props.cost;
+        }
 
     }
 
     get canBuy() {
-        return this.cost <= gameData.trees
+        return gameData.trees.greaterThanOrEqualTo(this.cost)
     }
 
     buy() {
@@ -34,8 +38,13 @@ class Generator {
     }
 
     get productionPerSecond() {
+
         let ret = this.amount * this.mult;
         ret /= 10
+        if (ret == undefined) {
+            ret = 0;
+        }
+
         return ret
     }
 

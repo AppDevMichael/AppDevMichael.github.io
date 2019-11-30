@@ -1,7 +1,7 @@
 var gameData = {
-    trees: 0,
+    trees: new Decimal(0),
     treesPerClick: 1,
-    treesPerSec: 0,
+    treesPerSec: new Decimal(0),
     visableGen: 1,
     generators: [],
     genButtons: [],
@@ -16,6 +16,46 @@ var firstGen = {
     bought: 0,
     name: "Generator "
 }
+var notations = [
+    ' thousand',
+    ' million',
+    ' billion',
+    ' trillion',
+    ' quadrillion',
+    ' quintillion',
+    ' sextillion',
+    ' septillion',
+    ' octillion',
+    ' nonillion'
+];
+var prefixes = [
+    '',
+    'un',
+    'duo',
+    'tre',
+    'quattuor',
+    'quin',
+    'sex',
+    'septen',
+    'octo',
+    'novem'
+];
+var suffixes = [
+    'decillion',
+    'vigintillion',
+    'trigintillion',
+    'quadragintillion',
+    'quinquagintillion',
+    'sexagintillion',
+    'septuagintillion',
+    'octogintillion',
+    'nonagintillion'
+];
+for (var k in suffixes) {
+    for (var j in prefixes)
+        notations.push(' ' + prefixes[j] + suffixes[k]);
+}
+//console.log(formatLong);
 
 let tree;
 let tipBorder;
@@ -23,6 +63,16 @@ let buttons = new Array();
 let tips;
 var showTip = false;
 var tipNum = 0;
+
+var savegame = JSON.parse(localStorage.getItem("treeIdleSave"));
+if (savegame !== null) {
+    gameData = savegame
+    gameData.trees = new Decimal(savegame.trees);
+    gameData.treesPerSec = new Decimal(savegame.treesPerSec);
+    for (i in gameData.generators) {
+        gameData.generators[i] = new Generator(gameData.generators[i]);
+    }
+}
 
 function preload() {
 
@@ -37,24 +87,29 @@ function setup() {
     var cnv = createCanvas(1024, 640);
     //cnv = createCanvas(windowWidth, windowHeight);
     noSmooth();
-    gameData.upgrades = upgrades;
+    //Decimal.set({ precision: 1, defaults: true })
+
     var x = (windowWidth - width) / 2;
     var y = (windowHeight - height) / 2;
     cnv.position(x, y);
     imageMode(CENTER);
     tree.resizeNN(200, 320);
     image(tree, width / 4, height / 2);
-    console.log(upgrades);
-
+    if (savegame == null) {
+        gameData.upgrades = upgrades;
+        for (var i = 0; i <= gameData.visableGen; i++) {
+            gameData.generators[i] = createGenerator(firstGen.name + i, i);
+            gameData.genButtons[i] = new Button((width / 2) + 130, 120 + (54 * i), 240, 48, gameData.generators[i]);
+        }
+    }
     for (var i = 0; i <= gameData.visableGen; i++) {
-        gameData.generators[i] = createGenerator(firstGen.name + i, i);
         gameData.genButtons[i] = new Button((width / 2) + 130, 120 + (54 * i), 240, 48, gameData.generators[i]);
     }
 
 }
 
 setInterval(function () {
-    gameData.trees += gameData.treesPerSec;
+    gameData.trees = Decimal.add(gameData.trees, gameData.treesPerSec)
 }, 1000);
 
 setInterval(function () {
@@ -62,6 +117,17 @@ setInterval(function () {
     tipNum = random(tips);
 
 }, 30000);
+
+setInterval(function () {
+
+    var tempData = Object.assign({}, gameData);
+    tempData.genButtons = [];
+    tempData.upButtons = [];
+    localStorage.setItem('treeIdleSave', JSON.stringify(tempData));
+
+}, 10000);
+
+
 
 
 function draw() {
@@ -77,10 +143,10 @@ function draw() {
     image(tree, width / 4, height / 2);
     textSize(25);
 
-    text("Your trees: " + Math.round(gameData.trees), (width / 2) + 20, 40);
+    text("Your trees: " + numberFormat(Decimal.round(gameData.trees)), (width / 2) + 20, 40);
     textSize(12);
     text("Your trees per click: " + gameData.treesPerClick, (width / 2) + 20, 60);
-    text("Your trees per second: " + Math.round(gameData.treesPerSec * 100) / 100, (width / 2) + 20, 74);
+    text("Your trees per second: " + Decimal.round(gameData.treesPerSec * 100) / 100, (width / 2) + 20, 74);
     stroke(0);
     line((width / 2), 0, (width / 2), height);
     for (var i = 0; i <= gameData.visableGen; i++) {
@@ -118,15 +184,11 @@ function draw() {
 
 function mousePressed() {
     if (mouseX < (width / 2)) {
-        gameData.trees += gameData.treesPerClick;
+        gameData.trees = Decimal.add(gameData.trees, gameData.treesPerClick)
     }
-    for (var i = 0; i < gameData.visableGen; i++) {
+    for (var i = 0; i < gameData.genButtons.length; i++) {
         var clicked = gameData.genButtons[i].click(mouseX, mouseY);
-        if (clicked) { }
-    }
-    if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 100) {
-        let fs = fullscreen();
-        fullscreen(!fs);
+        if (clicked) { gameData.genButtons[i].on = true; }
     }
 }
 
@@ -134,12 +196,12 @@ function mouseReleased() {
     for (var i = 0; i < gameData.genButtons.length; i++) {
         var clicked = gameData.genButtons[i].click(mouseX, mouseY);
         gameData.genButtons[i].on = false;
+
         if (clicked) {
             tmpPrice = gameData.generators[i].cost;
             bought = gameData.generators[i].buy();
-            console.log("production of " + i + " is: " + gameData.generators[i].productionPerSecond);
             if (bought) {
-                gameData.trees = gameData.trees - Math.round(tmpPrice);
+                gameData.trees = gameData.trees.sub(Math.round(tmpPrice));
                 var tps = 0;
                 let gens = 0;
                 for (var i = 0; i < gameData.generators.length; i++) {
@@ -148,7 +210,7 @@ function mouseReleased() {
                         gens = i;
                     }
                 }
-                gameData.treesPerSec = tps;
+                gameData.treesPerSec = new Decimal(tps);
                 gens++;
                 if (gens > gameData.visableGen) {
                     gameData.generators[gens] = createGenerator(firstGen.name + gens, gens);
@@ -162,6 +224,8 @@ function mouseReleased() {
             }
         }
     }
+
+
     for (var i = 0; i < gameData.upgrades.length; i++) {
         if (gameData.upButtons[i] != undefined) {
             var clicked = gameData.upButtons[i].click(mouseX, mouseY);
@@ -191,3 +255,34 @@ function drawTip(msg) {
     text(msg, width - 120, height - 120, 220, 220);
     //console.log(msg);
 }
+
+function numberFormat(number) {
+    var base = 0,
+        notationValue = '';
+    if (number.greaterThanOrEqualTo(1000000)) {
+        number = Decimal.div(number, 1000)
+        while ((number.round()).greaterThanOrEqualTo(1000)) {
+            number = Decimal.div(number, 1000);
+            base++;
+        }
+        if (base >= notations.length) {
+            return 'Infinity';
+        } else {
+            notationValue = notations[base];
+        }
+    }
+    if (number.greaterThanOrEqualTo(1000)) {
+        remain = Decimal.mod(number, 1000).toString();
+        Decimal.rounding = Decimal.ROUND_DOWN;
+        remain = "0000" + remain;
+        remain = remain.substr(remain.length - 3);
+        outNum = Decimal.round(number.div(1000)).toString();
+        Decimal.rounding = Decimal.ROUND_HALF_UP;
+        output = outNum + "," + remain + notationValue;
+        return output;
+
+    }
+
+    return (Decimal.round(number.mul(1000)).div(1000)).toString() + notationValue;
+}
+
