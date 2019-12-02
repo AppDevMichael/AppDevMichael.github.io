@@ -3,25 +3,13 @@
 @import url('https://fonts.googleapis.com/css?family=Ruda:900');
 
   body {
-    background-image: url(../images/db.png);
+    background-image: url(../images/bg.png);
     background-position: bottom;
-    animation: 6s linear infinite bp;
     display: flex;
     align-items: center;
     justify-content: center;
-    image-rendering: optimizeQuality;
-    //background-size: 250px 200px;
   }
   
-  @keyframes bp {
-    from {
-      background-position:  0 0;
-    }
-    
-    to {
-      background-position:  -200px 0;
-    }
-  }
   
   html, body {
     height: 100%;
