@@ -58,29 +58,45 @@ for (var k in suffixes) {
 //console.log(formatLong);
 
 let tree;
+let lBackground;
 let tipBorder;
 let buttons = new Array();
 let tips;
 var showTip = false;
 var tipNum = 0;
 
+
 var savegame = JSON.parse(localStorage.getItem("treeIdleSave"));
-if (savegame !== null) {
-    gameData = savegame
-    gameData.trees = new Decimal(savegame.trees);
-    gameData.treesPerSec = new Decimal(savegame.treesPerSec);
-    for (i in gameData.generators) {
-        gameData.generators[i] = new Generator(gameData.generators[i]);
-    }
-}
 
 function preload() {
-
+    if (savegame !== null) {
+        gameData = savegame
+        gameData.trees = new Decimal(savegame.trees);
+        gameData.treesPerSec = new Decimal(savegame.treesPerSec);
+        for (i in gameData.generators) {
+            gameData.generators[i] = new Generator(gameData.generators[i]);
+        }
+        for (i in gameData.upgrades) {
+            if (gameData.upgrades[i].bought == 1) {
+                if (gameData.upgrades[i].background != "") {
+                    lBackground = loadImage(gameData.upgrades[i].background);
+                }
+                else if (gameData.upgrades[i].tree != undefined) {
+                    tree = loadImage(gameData.upgrades[i].tree);
+                }
+            }
+        }
+    }
     tips = loadStrings('assets/tips.txt');
-    tipBorder = loadImage('images/popupbox.png')
-    tree = loadImage('images/trees/palmtree.png');
+    tipBorder = loadImage('images/popupbox.png');
     rBackground = loadImage('images/rightBG.png');
-    lBackground = loadImage('images/leftBG.png');
+    if (tree == undefined) {
+        tree = loadImage('images/trees/palmtree.png');
+    }
+    if (lBackground == undefined) {
+        lBackground = loadImage('images/leftBG.png');
+    }
+
 }
 
 function setup() {
@@ -236,10 +252,15 @@ function mouseReleased() {
                         gameData.upgrades[i].bought = 1;
                         gameData.trees -= gameData.upgrades[i].cost;
                     }
-                    else if (gameData.upgrades[i].tpc != "") {
+                    else if (gameData.upgrades[i].tpc != undefined) {
                         gameData.upgrades[i].bought = 1;
                         gameData.trees -= gameData.upgrades[i].cost;
                         gameData.treesPerClick += gameData.upgrades[i].tpc;
+                    }
+                    else if (gameData.upgrades[i].tree != undefined) {
+                        gameData.upgrades[i].bought = 1;
+                        gameData.trees -= gameData.upgrades[i].cost;
+                        tree = gameData.upButtons[i].tree;
                     }
                 }
             }

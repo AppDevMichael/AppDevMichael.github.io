@@ -3,21 +3,23 @@
 @import url('https://fonts.googleapis.com/css?family=Ruda:900');
 
   body {
-    background-image: url(//www.toptal.com/designers/subtlepatterns/patterns/symphony.png);
+    background-image: url(../images/db.png);
     background-position: bottom;
-    animation: 4s linear 0s infinite bp;
+    animation: 6s linear infinite bp;
     display: flex;
     align-items: center;
     justify-content: center;
+    image-rendering: optimizeQuality;
+    //background-size: 250px 200px;
   }
   
   @keyframes bp {
     from {
-      background-position:  198px 0;
+      background-position:  0 0;
     }
     
     to {
-      background-position:  0 198px;
+      background-position:  -200px 0;
     }
   }
   

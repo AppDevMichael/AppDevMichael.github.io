@@ -22,6 +22,9 @@ class Button {
             if (tempObj.background != "") {
                 this.bg = loadImage(tempObj.background);
             }
+            else if (tempObj.tree != undefined) {
+                this.tree = loadImage(tempObj.tree);
+            }
         }
         this.hoverImage = loadImage("images/thinBorderDescBox.png");
 
